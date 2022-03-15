@@ -51,7 +51,12 @@ public class Window {
             throw new RuntimeException("GLFWVidMode is null.");
         }
         glfwSetWindowPos(this.window, (vidMode.width() - getWidth()) / 2, (vidMode.height() - getHeight()) / 2);
+
+        glfwMakeContextCurrent(this.window);
         glfwShowWindow(this.window);
+
+        // VSync
+        glfwSwapInterval(1);
     }
 
     public void render() {
@@ -90,5 +95,4 @@ public class Window {
     public GLFWImage.Buffer getIcon() {
         return icon;
     }
-
 }
