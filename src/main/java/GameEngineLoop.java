@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.Thread.enumerate;
 import static java.lang.Thread.sleep;
 
-public class GameEngineLoop extends Canvas implements Runnable  {
+public class GameEngineLoop extends Canvas implements Runnable {
 
     private Thread loopthread;
     private boolean running = false;
@@ -19,7 +19,7 @@ public class GameEngineLoop extends Canvas implements Runnable  {
     private int lastlablex = 0;
 
 
-    public  void start(){
+    public void start() {
         this.running = true;
         this.loopthread = new Thread(this);
         this.loopthread.start();
@@ -32,11 +32,11 @@ public class GameEngineLoop extends Canvas implements Runnable  {
 
     @Override
     public void run() {
-        while(this.running){
+        while (this.running) {
             update();
             render();
             try {
-                Thread.sleep((long) time.nano_to_milisec(time.remeining_time()) );
+                Thread.sleep((long) time.nano_to_milisec(time.remeining_time()));
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
@@ -44,38 +44,37 @@ public class GameEngineLoop extends Canvas implements Runnable  {
         }
     }
 
-    private void update(){
+    private void update() {
         v.add(new JLabel("3d game loop"));
         frame.add(v.lastElement());
-        this.lastlabley+=10;
-        if(this.lastlabley==600){
-            this.lastlablex+=100;
-            this.lastlabley=0;
+        this.lastlabley += 10;
+        if (this.lastlabley == 600) {
+            this.lastlablex += 100;
+            this.lastlabley = 0;
         }
-        v.lastElement().setBounds(this.lastlablex,this.lastlabley,100,50);
+        v.lastElement().setBounds(this.lastlablex, this.lastlabley, 100, 50);
 
     }
 
-    private void render(){
-        int lastx=0,lasty=0;
-        if(this.lastlabley!=lasty || this.lastlablex!=lastx){
-            v.lastElement().setText(String.valueOf(time.remeining_time())+"\n");
-            lastx=this.lastlablex;
-            lasty=this.lastlabley;
+    private void render() {
+        int lastx = 0, lasty = 0;
+        if (this.lastlabley != lasty || this.lastlablex != lastx) {
+            v.lastElement().setText(String.valueOf(time.remeining_time()) + "\n");
+            lastx = this.lastlablex;
+            lasty = this.lastlabley;
         }
     }
 
-    private void  clean(){
+    private void clean() {
         frame.getContentPane().removeAll();
         frame.repaint();
     }
 
 
-
-    GameEngineLoop(){
+    GameEngineLoop() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(Width,Height);
+        frame.setSize(Width, Height);
         frame.setLayout(null);
         frame.setVisible(true);
     }
