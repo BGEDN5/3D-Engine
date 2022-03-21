@@ -1,7 +1,7 @@
 public class Matrix4f {
 
     private static final short MATRIX_LEN = 4;
-    private float [][] matrix;
+    private float[][] matrix;
 
     public Matrix_4x4(float [][] matrix){
         this.matrix = matrix;
