@@ -1,5 +1,3 @@
-import static java.lang.Thread.sleep;
-
 public class Engine  implements Runnable {
 
     private Thread loopthread;

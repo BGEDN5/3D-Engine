@@ -18,5 +18,4 @@ public class timeutility {
         return nanosec / 1000000;
     }
 
-
 }
