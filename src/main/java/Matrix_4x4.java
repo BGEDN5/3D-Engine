@@ -1,4 +1,4 @@
-public class Matrix_4x4 {
+public class Matrix4f {
 
     private static final byte matrix_len_4 = 4;
     private float [][] matrix;
