@@ -34,19 +34,8 @@ public class Matrix4f {
         return matrix;
     }
 
-    public int[][] multiply_matrix(int [][] mat1, int [][] mat2){
-
-        int [][] matrix1 = new int[matrix_len_4][matrix_len_4];
-
-        for(int i = 0; i< matrix_len_4; i++) {
-            for (int j = 0; j < matrix_len_4; j++) {
-                matrix1[i][j] = 0;
-                for (int k = 0; k < matrix_len_4; k++) {
-                    matrix1[i][j] += mat1[i][k] * mat2[k][j];
-                }
-            }
-        }
-        return matrix1;
+    public void multiply(Matrix4f other){
+              ....
     }
 
 
