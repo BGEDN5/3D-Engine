@@ -23,7 +23,7 @@ public class Matrix4f {
         this.matrix[i][j] = entry;
     }
 
-    public static int[][] identity(){
+    public static Matrix4f identity(){
         int [][] matrix = new int[matrix_len_4][matrix_len_4];
 
         for (int i = 0; i < matrix_len_4; i++) {
