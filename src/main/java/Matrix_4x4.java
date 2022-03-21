@@ -11,7 +11,7 @@ public class Matrix4f {
         return matrix;
     }
 
-    public float getSeparateCell(int i, int j){
+    public float getCellValue(int i, int j){
         return matrix[i][j];
     }
 
