@@ -28,10 +28,7 @@ public class Matrix4f {
 
         for (int i = 0; i < matrix_len_4; i++) {
             for (int j = 0; j < matrix_len_4; j++) {
-                if(i == j)
-                    matrix[i][j] = 1;
-                else
-                    matrix[i][j] = 0;
+                matrix[i][j] = (i == j) ? 1 : 0;
             }
         }
         return matrix;
