@@ -1,45 +1,59 @@
 public class Vector2f {
 
-    public float x,y;
+    public float x, y;
 
-    public Vector2f(float x1, float y1){
-        this.x=x1;
-        this.y=y1;
+    public Vector2f(float x1, float y1) {
+        this.x = x1;
+        this.y = y1;
     }
 
-    public float length(){
-        return (float) Math.sqrt(this.x*this.x+this.y*this.y);
+    public float length() {
+        return (float) Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
-    public float dot(Vector2f a){
-         return a.x*this.x+a.y*this.y;
+    public float dot(Vector2f other) {
+        return other.x * this.x + other.y * this.y;
     }
 
-//    public  Vector2f cross(Vector2f a){ return null; }
-//    You can't do a cross product with vectors in 2D space
+    public Vector2f cross(Vector2f other) {
+        return null;
+    }
 
-    public Vector2f normalize(){
-        float l  = this.length();
-        if (l==0){
+    public void normalize() {
+        float l = this.length();
+        if (l == 0) {
             throw new IllegalArgumentException("Argument 'divisor' is 0");
         }
-        return new Vector2f(this.x/l,this.y/l);
+        this.x = this.x / l;
+        this.y = this.y / l;
     }
 
-    public Vector2f rotate(float angle){
-        float cos = (float) Math.cos(angle),sin= (float) Math.sin(angle);
-        return new Vector2f((cos*x-sin*y),(sin*x+cos*y));
+    public void rotate(float angle) {
+        float cos = (float) Math.cos(angle);
+        float sin = (float) Math.sin(angle);
+        this.x = (cos * x - sin * y);
+        this.y = (sin * x + cos * y);
     }
 
-    public  Vector2f add(Vector2f a){ return  new Vector2f(this.x+a.x,this.y+a.y); }
+    public void add(Vector2f other) {
+        this.x = this.x + other.x;
+        this.y = this.y + other.y;
+    }
 
-    public  Vector2f sub(Vector2f a){ return new Vector2f(this.x-a.x,this.y-a.y); }
+    public void sub(Vector2f other) {
+        this.x = this.x - other.x;
+        this.y = this.y - other.y;
+    }
 
-    public  Vector2f mult(Vector2f a){ return  new Vector2f(this.x*a.x,this.y*a.y); }
+    public void mult(Vector2f other) {
+        this.x = this.x * other.x;
+        this.y = this.y * other.y;
+    }
 
-    public  Vector2f div(Vector2f a){
-        if(a.x!=0 && a.y!=0){
-            return new Vector2f(this.x/a.x,this.y/a.y);
+    public void div(Vector2f other) {
+        if (other.x != 0 && other.y != 0) {
+            this.x = this.x / other.x;
+            this.y = this.y / other.y;
         }
         throw new IllegalArgumentException("Argument 'divisor' is 0");
     }
