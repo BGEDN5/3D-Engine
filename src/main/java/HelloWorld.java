@@ -103,7 +103,7 @@ public class HelloWorld {
             glfwSwapBuffers(window); // swap the color buffers
 
             // Poll for window events. The key callback above will only be
-            // invoked during this call.
+            // invoked during this call./home/davit
             glfwPollEvents();
         }
     }
