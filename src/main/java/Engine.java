@@ -20,10 +20,14 @@ public class Engine  implements Runnable {
 
     @Override
     public void run() {
+        this.time.setPreviousTime(System.nanoTime());
         while (this.running) {
             update();
             render();
-            float CurrentTime = System.nanoTime();
+            this.time.setCurrentTime(System.nanoTime());
+            this.time.setDeltaTime(this.time.CalculateDeltaTime());
+            float DeltaTime = this.time.CalculateDeltaTime();
+            this.time.setPreviousTime(this.time.getCurrentTime());
         }
     }
 

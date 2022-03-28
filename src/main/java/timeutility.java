@@ -28,7 +28,7 @@ public class timeutility {
         return this.DeltaTime;
     }
 
-    public double CalculateDeltaTime() {
+    public float CalculateDeltaTime() {
         return this.getCurrentTime()-this.getPreviousTime();
     }
 
