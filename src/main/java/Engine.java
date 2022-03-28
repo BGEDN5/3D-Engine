@@ -4,7 +4,6 @@ public class Engine  implements Runnable {
     private boolean running = false;
     private static final int Width = 800;
     private static final int Height = 600;
-    private timeutility time = new timeutility();
     private Window frame = new Window(this.Height,this.Width,"test frame");
 
     public void start() {
@@ -20,15 +19,13 @@ public class Engine  implements Runnable {
 
     @Override
     public void run() {
+        float PreviousTime = System.nanoTime();
         while (this.running) {
             update();
             render();
-            try {
-                Thread.sleep((long) time.nano_to_milisec(time.remeining_time()));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
-            }
+            float CurrentTime = System.nanoTime();
+            float DeltaTime = CurrentTime - PreviousTime;
+            PreviousTime = CurrentTime;
         }
     }
 
