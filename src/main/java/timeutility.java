@@ -1,21 +1,35 @@
 public class timeutility {
     int fps = 60;
-    double interval = 1000000000 / fps;
+    float PreviousTime;
+    float CurrentTime;
+    float DeltaTime;
 
-    public double next_frame_time() {
-        return System.nanoTime() + interval;
+    public float getCurrentTime() {
+        return this.CurrentTime;
     }
 
-    public double remeining_time() {
-        double k = next_frame_time() - System.nanoTime();
-        if (k < 0) {
-            return 0;
-        }
-        return k;
+    public float getPreviousTime() {
+        return this.PreviousTime;
     }
 
-    public double nano_to_milisec(double nanosec) {
-        return nanosec / 1000000;
+    public void setCurrentTime(float currentTime) {
+        this.CurrentTime = currentTime;
+    }
+
+    public void setPreviousTime(float previousTime) {
+        this.PreviousTime = previousTime;
+    }
+
+    public void setDeltaTime(float deltaTime) {
+        this.DeltaTime = deltaTime;
+    }
+
+    public float getDeltaTime() {
+        return this.DeltaTime;
+    }
+
+    public double CalculateDeltaTime() {
+        return this.getCurrentTime()-this.getPreviousTime();
     }
 
 }
