@@ -3,10 +3,10 @@ public class Engine implements Runnable {
     private Thread loopthread;
     private boolean running = false;
     private boolean isRendered = false;
-    private static final int Width = 800;
-    private static final int Height = 600;
+    private static final int width = 800;
+    private static final int height = 600;
     private timeutility time = new timeutility();
-    private Window frame = new Window(this.Height, this.Width, "test frame");
+    private Window frame = new Window(this.height, this.width, "test frame");
 
     public void start() {
         if (this.running != true) {
@@ -37,8 +37,8 @@ public class Engine implements Runnable {
                 }
             }
             this.time.setCurrentTime((double) System.nanoTime());
-            this.time.setDeltaTime(this.time.CalculateDeltaTime());
-            DeltaTime += this.time.CalculateDeltaTime();
+            this.time.setDeltaTime(this.time.calculateDeltaTime());
+            DeltaTime += this.time.calculateDeltaTime();
             Double TempGameRate = this.time.GameRate;
             this.time.setPreviousTime(this.time.getCurrentTime());
             while (TempGameRate > DeltaTime) {
