@@ -21,13 +21,18 @@ public class Engine  implements Runnable {
     @Override
     public void run() {
         this.time.setPreviousTime(System.nanoTime());
+        float DeltaTime = 0;
         while (this.running) {
-            update();
-            render();
             this.time.setCurrentTime(System.nanoTime());
             this.time.setDeltaTime(this.time.CalculateDeltaTime());
-            float DeltaTime = this.time.CalculateDeltaTime();
+            DeltaTime += this.time.CalculateDeltaTime();
+            float fps = 1/DeltaTime;
             this.time.setPreviousTime(this.time.getCurrentTime());
+            for(int i=0;i<DeltaTime;i++) {
+                update();
+            }
+            render();
+            System.out.println(1/DeltaTime);
         }
     }
 
@@ -46,7 +51,12 @@ public class Engine  implements Runnable {
 
     public static void main(String[] args) throws InterruptedException {
         Engine eng = new Engine();
-        eng.frame.init();
+        eng.start();
+       // eng.frame.init();
+        System.out.println("started");
+        Thread.sleep(1000);
+        eng.stop();
+        System.out.println("stoped");
     }
 
 }
