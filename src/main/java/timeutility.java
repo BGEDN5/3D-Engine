@@ -3,6 +3,7 @@ public class timeutility {
     float PreviousTime;
     float CurrentTime;
     float DeltaTime;
+    float GameRate = 1/fps;
 
     public float getCurrentTime() {
         return this.CurrentTime;
