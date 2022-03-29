@@ -1,36 +1,36 @@
 public class timeutility {
-    int fps = 60;
-    float PreviousTime;
-    float CurrentTime;
-    float DeltaTime;
-    float GameRate = 1/fps;
+    double fps = 60;
+    Double PreviousTime;
+    Double CurrentTime;
+    Double DeltaTime;
+    Double GameRate = (Double) 1.0 / this.fps;
 
-    public float getCurrentTime() {
+    public Double getCurrentTime() {
         return this.CurrentTime;
     }
 
-    public float getPreviousTime() {
+    public Double getPreviousTime() {
         return this.PreviousTime;
     }
 
-    public void setCurrentTime(float currentTime) {
+    public void setCurrentTime(Double currentTime) {
         this.CurrentTime = currentTime;
     }
 
-    public void setPreviousTime(float previousTime) {
+    public void setPreviousTime(Double previousTime) {
         this.PreviousTime = previousTime;
     }
 
-    public void setDeltaTime(float deltaTime) {
+    public void setDeltaTime(Double deltaTime) {
         this.DeltaTime = deltaTime;
     }
 
-    public float getDeltaTime() {
+    public Double getDeltaTime() {
         return this.DeltaTime;
     }
 
-    public float CalculateDeltaTime() {
-        return this.getCurrentTime()-this.getPreviousTime();
+    public Double CalculateDeltaTime() {
+        return this.getCurrentTime() - this.getPreviousTime();
     }
 
 }
