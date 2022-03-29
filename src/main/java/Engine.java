@@ -1,16 +1,19 @@
-public class Engine  implements Runnable {
+public class Engine implements Runnable {
 
     private Thread loopthread;
     private boolean running = false;
-    private static final int Width = 800;
-    private static final int Height = 600;
+    private boolean isRendered = false;
+    private static final int width = 800;
+    private static final int height = 600;
     private timeutility time = new timeutility();
-    private Window frame = new Window(this.Height,this.Width,"test frame");
+    private Window frame = new Window(this.height, this.width, "test frame");
 
     public void start() {
-        this.running = true;
-        this.loopthread = new Thread(this);
-        this.loopthread.start();
+        if (this.running != true) {
+            this.running = true;
+            this.loopthread = new Thread(this);
+            this.loopthread.start();
+        }
     }
 
     public void stop() throws InterruptedException {
@@ -20,34 +23,55 @@ public class Engine  implements Runnable {
 
     @Override
     public void run() {
+
+        this.frame.init();
+        this.time.setPreviousTime((double) System.nanoTime());
+        float DeltaTime = 0;
         while (this.running) {
-            update();
-            render();
-            try {
-                Thread.sleep((long) time.nano_to_milisec(time.remeining_time()));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
+
+            if (frame.close()) {
+                try {
+                    this.stop();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            this.time.setCurrentTime((double) System.nanoTime());
+            this.time.setDeltaTime(this.time.calculateDeltaTime());
+            DeltaTime += this.time.calculateDeltaTime();
+            Double TempGameRate = this.time.GameRate;
+            this.time.setPreviousTime(this.time.getCurrentTime());
+            while (TempGameRate > DeltaTime) {
+                TempGameRate -= DeltaTime;
+                update();
+            }
+            if (!isRendered) {
+                render();
             }
         }
     }
 
-    private void update(){
+    private void update() {
         this.frame.update();
+        this.isRendered = false;
     }
 
-    private void render(){
+    private void render() {
         this.frame.render();
     }
 
-    private void clean(){
+    private void clean() {
         this.frame.cleanup();
     }
 
 
     public static void main(String[] args) throws InterruptedException {
         Engine eng = new Engine();
-        eng.frame.init();
+        eng.start();
+        System.out.println("started");
+        Thread.sleep(3000);
+        eng.stop();
+        System.out.println("stoped");
     }
 
 }

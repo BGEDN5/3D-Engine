@@ -1,21 +1,36 @@
 public class timeutility {
-    int fps = 60;
-    double interval = 1000000000 / fps;
+    double fps = 60;
+    Double previousTime;
+    Double currentTime;
+    Double deltaTime;
+    Double GameRate = (Double) 1.0 / this.fps;
 
-    public double next_frame_time() {
-        return System.nanoTime() + interval;
+    public Double getCurrentTime() {
+        return this.currentTime;
     }
 
-    public double remeining_time() {
-        double k = next_frame_time() - System.nanoTime();
-        if (k < 0) {
-            return 0;
-        }
-        return k;
+    public Double getPreviousTime() {
+        return this.previousTime;
     }
 
-    public double nano_to_milisec(double nanosec) {
-        return nanosec / 1000000;
+    public void setCurrentTime(Double currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public void setPreviousTime(Double previousTime) {
+        this.previousTime = previousTime;
+    }
+
+    public void setDeltaTime(Double deltaTime) {
+        this.deltaTime = deltaTime;
+    }
+
+    public Double getDeltaTime() {
+        return this.deltaTime;
+    }
+
+    public Double calculateDeltaTime() {
+        return this.getCurrentTime() - this.getPreviousTime();
     }
 
 }
