@@ -6,7 +6,7 @@ public class Engine implements Runnable {
     private static final int width = 800;
     private static final int height = 600;
     private timeutility time = new timeutility();
-    private Window frame = new Window(this.height, this.width, "test frame");
+    private Window frame = new Window(this.width, this.height, "test frame");
 
     public void start() {
         if (this.running != true) {
@@ -69,8 +69,8 @@ public class Engine implements Runnable {
         Engine eng = new Engine();
         eng.start();
         System.out.println("started");
-        Thread.sleep(3000);
-        eng.stop();
+        Thread.sleep(6000);
+//        eng.stop();
         System.out.println("stoped");
     }
 
