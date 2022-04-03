@@ -70,7 +70,6 @@ public class Window {
     public void cleanup() {
         glfwDestroyWindow(window);
         glfwTerminate();
-
     }
 
     public boolean close() {
@@ -98,7 +97,7 @@ public class Window {
         return icon;
     }
 
-    public long getWindow() {
+    public static long getWindow() {
         return window;
     }
 
