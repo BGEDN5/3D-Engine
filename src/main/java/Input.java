@@ -1,5 +1,4 @@
 import org.lwjgl.glfw.*;
-import org.lwjgl.opengl.GL;
 
 public class Input{
 
@@ -13,8 +12,8 @@ public class Input{
     private static double cursorX, cursorY;
     private static double scrollX, scrollY;
 
-    private int keyPressed;
-    private int buttonPressed;
+    private static int keyPressed;
+    private static int buttonPressed;
 
     public Input(){
         keyboard = new GLFWKeyCallback(){
@@ -58,25 +57,25 @@ public class Input{
         return buttons[button];
     }
 
-    public boolean isKeyPressed(int key){
+    public static boolean isKeyPressed(int key){
         boolean check = (keyPressed == key);
         if(check) keyPressed = -1;
         return check;
     }
 
-    public boolean isButtonPressed(int button){
+    public static boolean isButtonPressed(int button){
         boolean check = (buttonPressed == button);
         if(check) buttonPressed = -1;
         return check;
     }
 
-    public boolean isKeyUp(int key){
+    public static boolean isKeyUp(int key){
         boolean check = (key != keyPressed);
         if(check) keyPressed = -1;
         return check;
     }
 
-    public boolean isButtonUp(int button){
+    public static boolean isButtonUp(int button){
         boolean check = (button != keyPressed);
         if(check) keyPressed = -1;
         return check;
@@ -90,7 +89,9 @@ public class Input{
     }
 
     public void update(){
-
+        GLFW.glfwSetKeyCallback(Window.getWindow(), getKeyboardCallback());
+        GLFW.glfwSetMouseButtonCallback(Window.getWindow(), getMouseButtonsCallback());
+        GLFW.glfwSetCursorPosCallback(Window.getWindow(), getCursorPosCallback());
     }
 
     public GLFWKeyCallback getKeyboardCallback() {
