@@ -8,7 +8,7 @@ public class Window {
     private final int width;
     private final int height;
     private final String title;
-    private long window;
+    private static long window;
     private final GLFWImage.Buffer icon;
 
     public Window(int width, int height, String title) {
@@ -34,15 +34,15 @@ public class Window {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
 
-        this.window = glfwCreateWindow(width, height, title, MemoryUtil.NULL, MemoryUtil.NULL);
+        window = glfwCreateWindow(width, height, title, MemoryUtil.NULL, MemoryUtil.NULL);
 
-        if (this.window == 0) {
+        if (window == 0) {
             throw new RuntimeException("Window could not be created");
         }
 
         // Icon
         if (getIcon() != null) {
-            glfwSetWindowIcon(this.window, getIcon());
+            glfwSetWindowIcon(window, getIcon());
         }
 
         // Window gets positioned in the center of the screen
@@ -50,17 +50,17 @@ public class Window {
         if (vidMode == null) {
             throw new RuntimeException("GLFWVidMode is null.");
         }
-        glfwSetWindowPos(this.window, (vidMode.width() - getWidth()) / 2, (vidMode.height() - getHeight()) / 2);
+        glfwSetWindowPos(window, (vidMode.width() - getWidth()) / 2, (vidMode.height() - getHeight()) / 2);
 
-        glfwMakeContextCurrent(this.window);
-        glfwShowWindow(this.window);
+        glfwMakeContextCurrent(window);
+        glfwShowWindow(window);
 
         // VSync
         glfwSwapInterval(1);
     }
 
     public void render() {
-        glfwSwapBuffers(this.window);
+        glfwSwapBuffers(window);
     }
 
     public void update() {
@@ -68,11 +68,13 @@ public class Window {
     }
 
     public void cleanup() {
-        glfwDestroyWindow(this.window);
+        glfwDestroyWindow(window);
+        glfwTerminate();
+
     }
 
     public boolean close() {
-        boolean shouldClose = glfwWindowShouldClose(this.window);
+        boolean shouldClose = glfwWindowShouldClose(window);
         if (shouldClose) {
             cleanup();
         }
@@ -94,5 +96,19 @@ public class Window {
 
     public GLFWImage.Buffer getIcon() {
         return icon;
+    }
+
+    public long getWindow() {
+        return window;
+    }
+
+    public static void main(String[] args) {
+        Window window = new Window(800, 800, "title");
+        window.init();
+        while (!window.close()) {
+            window.update();
+            window.render();
+        }
+        window.cleanup();
     }
 }
