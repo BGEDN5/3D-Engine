@@ -10,6 +10,10 @@ public class Vertex {
         pos = new Vector3f(x1, y1, z1);
    }
 
+   public static int SIZE(){
+       return 3;
+   }
+
    public void set(Vector3f x){
        this.pos = x;
    }
