@@ -77,16 +77,14 @@ public class Vector3f {
         throw new IllegalArgumentException("Argument 'divisor' is 0");
     }
 
-    public void setX(int x1){
+    public void setX(float x1){
         this.x = x1;
     }
-    public void setY(int y1){
+    public void setY(float y1){
         this.y = y1;
     }
-    public void setZ(int z1){
-        this.z = z1;
-    }
-    public void set(int x1, int y1, int z1){
+    public void setZ(float z1){this.z = z1;}
+    public void set(float x1, float y1, float z1){
         this.x = x1;
         this.y = y1;
         this.z = z1;

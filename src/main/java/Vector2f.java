@@ -59,17 +59,18 @@ public class Vector2f {
         if (other.x != 0 && other.y != 0) {
             this.x = this.x / other.x;
             this.y = this.y / other.y;
+            return;
         }
         throw new IllegalArgumentException("Argument 'divisor' is 0");
     }
 
-    public void setX(int x1){
+    public void setX(float x1){
         this.x = x1;
     }
-    public void setY(int y1){
+    public void setY(float y1){
         this.y = y1;
     }
-    public void set(int x1, int y1){
+    public void set(float x1, float y1){
         this.x = x1;
         this.y = y1;
     }
