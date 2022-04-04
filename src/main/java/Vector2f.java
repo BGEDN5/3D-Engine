@@ -1,6 +1,11 @@
 public class Vector2f {
 
-    public float x, y;
+    private float x, y;
+
+    public Vector2f(){
+        this.x = 0F;
+        this.y = 0F;
+    }
 
     public Vector2f(float x1, float y1) {
         this.x = x1;
@@ -57,4 +62,23 @@ public class Vector2f {
         }
         throw new IllegalArgumentException("Argument 'divisor' is 0");
     }
+
+    public void setX(int x1){
+        this.x = x1;
+    }
+    public void setY(int y1){
+        this.y = y1;
+    }
+    public void set(int x1, int y1){
+        this.x = x1;
+        this.y = y1;
+    }
+
+    public float getX(){
+        return this.x;
+    }
+    public float getY(){
+        return this.y;
+    }
+
 }
