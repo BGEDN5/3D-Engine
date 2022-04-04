@@ -1,6 +1,6 @@
 public class Vector3f {
 
-    public float x, y, z;
+    private float x, y, z;
 
     public Vector3f(){
         this.x = 0F;
