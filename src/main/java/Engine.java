@@ -39,10 +39,11 @@ public class Engine implements Runnable {
             this.time.setCurrentTime((double) System.nanoTime());
             this.time.setDeltaTime(this.time.calculateDeltaTime());
             DeltaTime += this.time.calculateDeltaTime();
-            Double TempGameRate = this.time.GameRate;
+            Double TempGameRate = this.time.GameRate * 1000000000;
             this.time.setPreviousTime(this.time.getCurrentTime());
-            while (TempGameRate > DeltaTime) {
-                TempGameRate -= DeltaTime;
+            System.out.println("TempGameRate: " + TempGameRate + " DeltaTime: " + DeltaTime);
+            while (TempGameRate <= DeltaTime) {
+                DeltaTime -= TempGameRate;
                 update();
             }
             if (!isRendered) {
@@ -70,7 +71,7 @@ public class Engine implements Runnable {
         eng.start();
         System.out.println("started");
         Thread.sleep(6000);
-//        eng.stop();
+        eng.stop();
         System.out.println("stoped");
     }
 
