@@ -18,7 +18,7 @@ public class Mesh {
         addVertices(vertices);
     }
 
-    private void addVertices(Vertex[] vertices) {
+    public void addVertices(Vertex[] vertices) {
         this.size += vertices.length;
         GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, this.vbo);
         GL20.glBufferData(GL20.GL_ARRAY_BUFFER, createFlippedBuffer(vertices), GL20.GL_STATIC_DRAW);
@@ -49,4 +49,11 @@ public class Mesh {
         return buffer;
     }
 
+    public int getVbo() {
+        return vbo;
+    }
+
+    public int getSize() {
+        return size;
+    }
 }

@@ -15,7 +15,7 @@ public class Shader{
         GL20.glUseProgram(this.program);
     }
 
-    private void compileShader() {
+    public void compileShader() {
         GL20.glLinkProgram(program);
         if(GL20.glGetProgrami(program, GL20.GL_LINK_STATUS) == 0) {
             GL20.glGetProgramInfoLog(program, 1024);
@@ -29,8 +29,7 @@ public class Shader{
         }
     }
 
-    private void addProgram(String text, int type)
-    {
+    public void addProgram(String text, int type) {
         int shader = GL20.glCreateShader(type);
         if(shader == 0){
             System.out.println("Shader creation failed!");
@@ -45,5 +44,9 @@ public class Shader{
         }
 
         GL20.glAttachShader(program, shader);
+    }
+
+    public int getProgram() {
+        return program;
     }
 }
