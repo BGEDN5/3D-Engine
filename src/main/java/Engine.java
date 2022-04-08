@@ -7,6 +7,7 @@ public class Engine implements Runnable {
     private static final int height = 600;
     private timeutility time = new timeutility();
     private Window frame = new Window(this.width, this.height, "test frame");
+    private Input input = new Input();
 
     public void start() {
         if (this.running != true) {
