@@ -66,13 +66,5 @@ public class Engine implements Runnable {
     }
 
 
-    public static void main(String[] args) throws InterruptedException {
-        Engine eng = new Engine();
-        eng.start();
-        System.out.println("started");
-        Thread.sleep(6000);
-        eng.stop();
-        System.out.println("stoped");
-    }
 
 }
