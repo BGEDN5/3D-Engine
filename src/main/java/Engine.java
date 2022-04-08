@@ -68,6 +68,8 @@ public class Engine implements Runnable {
     private void render() {
         frame.render();
         this.game.render();
+        System.out.println(1/this.time.getDeltaTime()*1000000000);
+//        System.out.println(this.getInput().getCursorX() + " " + engine.getInput().getCursorY());
     }
 
     private void clean() {

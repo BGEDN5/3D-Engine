@@ -1,3 +1,4 @@
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
 import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
@@ -36,8 +37,80 @@ public class Demo implements Game {
     @Override
     public void render() {
         System.out.println("render");
+        //System.out.println(1/engine.getTime().getDeltaTime()*1000000000);
         sh.bind();
         m.draw();
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//
+//
+//import java.awt.event.KeyEvent;
+//
+//public class presentationMain  {
+//
+//    static Engine engine = new Engine(new Game() {
+//        @Override
+//        public void update() {
+//
+//        }
+//
+//        @Override
+//        public void render() {
+//
+//        }
+//    });
+//
+//    static boolean wasPressedOnce = false;
+//
+//    public static void keyDemo() throws InterruptedException {
+//        if (engine.getInput().isKeyPressed(KeyEvent.VK_A)) {
+//            System.out.println("A key is pressed");
+//            wasPressedOnce = true;
+//        }
+//        if (engine.getInput().isKeyPressed(KeyEvent.VK_S)) {
+//            System.out.println("S key is pressed");
+//            wasPressedOnce = true;
+//        }
+//        if (engine.getInput().isKeyPressed(KeyEvent.VK_D)) {
+//            System.out.println("D key is pressed");
+//            wasPressedOnce = true;
+//        }
+//
+//        if (engine.getInput().isKeyPressed(KeyEvent.VK_W)) {
+//            System.out.println("W key is pressed");
+//            wasPressedOnce = true;
+//        }
+//    }
+//
+//
+//    public static void main(String[] args) throws InterruptedException {
+//
+//        engine.start();
+//        int i = 300000;
+//        while (i>0){
+//            System.out.println(engine.getInput().getCursorX() + " " + engine.getInput().getCursorY());
+//            System.out.println(1/engine.getTime().getDeltaTime()*1000000000);
+//            keyDemo();
+//            i--;
+//        }
+//        System.out.println(wasPressedOnce);
+//    }
+//
+//}
+//
