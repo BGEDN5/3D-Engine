@@ -41,7 +41,6 @@ public class Engine implements Runnable {
             DeltaTime += this.time.calculateDeltaTime();
             Double TempGameRate = this.time.GameRate * 1000000000;
             this.time.setPreviousTime(this.time.getCurrentTime());
-            System.out.println("TempGameRate: " + TempGameRate + " DeltaTime: " + DeltaTime);
             while (TempGameRate <= DeltaTime) {
                 DeltaTime -= TempGameRate;
                 update();
