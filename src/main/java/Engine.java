@@ -7,6 +7,13 @@ public class Engine implements Runnable {
     private static final int height = 600;
     private timeutility time = new timeutility();
     private Window frame = new Window(this.width, this.height, "test frame");
+    private Input input = new Input();
+    private Game game ;
+
+    public Engine(Game other) {
+        this.game = other;
+        this.loopthread = new Thread(this);
+    }
 
     public void start() {
         if (this.running != true) {
@@ -40,20 +47,20 @@ public class Engine implements Runnable {
             this.time.setDeltaTime(this.time.calculateDeltaTime());
             DeltaTime += this.time.calculateDeltaTime();
             Double TempGameRate = this.time.GameRate * 1000000000;
-            this.time.setPreviousTime(this.time.getCurrentTime());
-            System.out.println("TempGameRate: " + TempGameRate + " DeltaTime: " + DeltaTime);
-            while (TempGameRate <= DeltaTime) {
+            while (DeltaTime >= TempGameRate) {
                 DeltaTime -= TempGameRate;
                 update();
             }
             if (!isRendered) {
                 render();
             }
+            this.time.setPreviousTime(this.time.getCurrentTime());
         }
     }
 
     private void update() {
         this.frame.update();
+        this.input.update();
         this.isRendered = false;
     }
 
@@ -65,14 +72,20 @@ public class Engine implements Runnable {
         this.frame.cleanup();
     }
 
-
-    public static void main(String[] args) throws InterruptedException {
-        Engine eng = new Engine();
-        eng.start();
-        System.out.println("started");
-        Thread.sleep(6000);
-        eng.stop();
-        System.out.println("stoped");
+   public timeutility getTime() {
+        return this.time;
     }
 
+    public Window getWindow() {
+        return this.frame;
+    }
+
+    public Input getInput() {
+        return this.input;
+    }
+
+    public Game getGame() {
+        return this.game;
+    }
 }
+

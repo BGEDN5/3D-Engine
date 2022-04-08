@@ -1,9 +1,9 @@
 public class timeutility {
-    double fps = 60;
-    Double previousTime;
-    Double currentTime;
-    Double deltaTime;
-    Double GameRate = (Double) 1.0 / this.fps;
+    final double fps = 60;
+    Double previousTime = (double) System.nanoTime();
+    Double currentTime =  (double) System.nanoTime();
+    Double deltaTime = 0.0;
+    final Double GameRate = (Double) 1.0 / this.fps;
 
     public Double getCurrentTime() {
         return this.currentTime;
