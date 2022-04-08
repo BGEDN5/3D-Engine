@@ -1,3 +1,5 @@
+package core;
+
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.GLFWImage;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -28,17 +30,17 @@ public class Window {
 
     public void init() {
         if (!glfwInit()) {
-            throw new RuntimeException("Window could not be initialised");
+            throw new RuntimeException("core.Window could not be initialised");
         }
 
-        // Configurations for the Window
+        // Configurations for the core.Window
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
 
         window = glfwCreateWindow(width, height, title, MemoryUtil.NULL, MemoryUtil.NULL);
 
         if (window == 0) {
-            throw new RuntimeException("Window could not be created");
+            throw new RuntimeException("core.Window could not be created");
         }
 
         // Icon
@@ -46,7 +48,7 @@ public class Window {
             glfwSetWindowIcon(window, getIcon());
         }
 
-        // Window gets positioned in the center of the screen
+        // core.Window gets positioned in the center of the screen
         GLFWVidMode vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         if (vidMode == null) {
             throw new RuntimeException("GLFWVidMode is null.");

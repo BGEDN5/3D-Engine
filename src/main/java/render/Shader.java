@@ -1,3 +1,5 @@
+package render;
+
 import org.lwjgl.opengl.GL20;
 
 public class Shader{
@@ -6,7 +8,7 @@ public class Shader{
     public Shader() {
         this.program = GL20.glCreateProgram();
         if(this.program == 0){
-            System.out.println("Shader creation failed!");
+            System.out.println("render.Shader creation failed!");
             System.exit(1);
         }
     }
@@ -32,7 +34,7 @@ public class Shader{
     public void addProgram(String text, int type) {
         int shader = GL20.glCreateShader(type);
         if(shader == 0){
-            System.out.println("Shader creation failed!");
+            System.out.println("render.Shader creation failed!");
             System.exit(1);
         }
 

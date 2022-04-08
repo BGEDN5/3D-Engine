@@ -1,4 +1,7 @@
-import java.awt.event.KeyEvent;
+package core;
+
+import demo.Demo;
+import utils.TimeUtility;
 
 public class Engine implements Runnable {
 
@@ -7,7 +10,7 @@ public class Engine implements Runnable {
     private boolean isRendered = false;
     private static final int width = 1280;
     private static final int height = 760;
-    private timeutility time = new timeutility();
+    private TimeUtility time = new TimeUtility();
     private static Window frame = new Window(Engine.width, Engine.height, "test frame");
     private Input input = new Input();
     private Game game;
