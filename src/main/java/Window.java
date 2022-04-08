@@ -1,6 +1,7 @@
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.GLFWImage;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryUtil;
 
 public class Window {
@@ -53,10 +54,13 @@ public class Window {
         glfwSetWindowPos(window, (vidMode.width() - getWidth()) / 2, (vidMode.height() - getHeight()) / 2);
 
         glfwMakeContextCurrent(window);
-        glfwShowWindow(window);
 
         // VSync
         glfwSwapInterval(1);
+
+        glfwShowWindow(window);
+
+        GL.createCapabilities();
     }
 
     public void render() {
@@ -101,13 +105,4 @@ public class Window {
         return window;
     }
 
-    public static void main(String[] args) {
-        Window window = new Window(800, 800, "title");
-        window.init();
-        while (!window.close()) {
-            window.update();
-            window.render();
-        }
-        window.cleanup();
-    }
 }
