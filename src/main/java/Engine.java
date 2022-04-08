@@ -3,16 +3,15 @@ public class Engine implements Runnable {
     private Thread loopthread;
     private boolean running = false;
     private boolean isRendered = false;
-    private static final int width = 800;
-    private static final int height = 600;
+    private static final int width = 1280;
+    private static final int height = 760;
     private timeutility time = new timeutility();
-    private Window frame = new Window(this.width, this.height, "test frame");
-    private Input input = new Input();
-    private Game game ;
+    private static Window frame = new Window(Engine.width, Engine.height, "test frame");
+    private Game game;
 
-    public Engine(Game other) {
-        this.game = other;
-        this.loopthread = new Thread(this);
+
+    public Engine(Game game) {
+        this.game = game;
     }
 
     public void start() {
@@ -23,15 +22,16 @@ public class Engine implements Runnable {
         }
     }
 
-    public void stop() throws InterruptedException {
+    public boolean stop() throws InterruptedException {
         this.running = false;
         this.loopthread = null;
+        return true;
     }
 
     @Override
     public void run() {
-
-        this.frame.init();
+        frame.init();
+        game.init();
         this.time.setPreviousTime((double) System.nanoTime());
         float DeltaTime = 0;
         while (this.running) {
@@ -39,6 +39,7 @@ public class Engine implements Runnable {
             if (frame.close()) {
                 try {
                     this.stop();
+                    return;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -59,33 +60,22 @@ public class Engine implements Runnable {
     }
 
     private void update() {
-        this.frame.update();
-        this.input.update();
+        frame.update();
+        this.game.update();
         this.isRendered = false;
     }
 
     private void render() {
-        this.frame.render();
+        frame.render();
+        this.game.render();
     }
 
     private void clean() {
-        this.frame.cleanup();
+        frame.cleanup();
     }
 
-   public timeutility getTime() {
-        return this.time;
-    }
-
-    public Window getWindow() {
-        return this.frame;
-    }
-
-    public Input getInput() {
-        return this.input;
-    }
-
-    public Game getGame() {
-        return this.game;
+    public static void main(String[] args) {
+        Engine engine = new Engine(new Demo());
+        engine.start();
     }
 }
-
