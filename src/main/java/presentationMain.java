@@ -6,7 +6,7 @@ public class presentationMain {
         int i = 100000;
         Thread.sleep(500);
         while (i>0){
-            System.out.println(engine.getTime().getDeltaTime());
+            System.out.println(1/engine.getTime().getDeltaTime()*1000000000);
             i--;
         }
         System.out.println("end");
