@@ -8,6 +8,12 @@ public class Engine implements Runnable {
     private timeutility time = new timeutility();
     private Window frame = new Window(this.width, this.height, "test frame");
     private Input input = new Input();
+    private Game game ;
+
+    public Engine(Game other) {
+        this.game = other;
+        this.loopthread = new Thread(this);
+    }
 
     public void start() {
         if (this.running != true) {
@@ -70,4 +76,16 @@ public class Engine implements Runnable {
         return this.time;
     }
 
+    public Window getWindow() {
+        return this.frame;
+    }
+
+    public Input getInput() {
+        return this.input;
+    }
+
+    public Game getGame() {
+        return this.game;
+    }
 }
+
