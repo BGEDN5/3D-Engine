@@ -37,7 +37,6 @@ public class Demo implements Game {
     @Override
     public void render() {
         System.out.println("render");
-        //System.out.println(1/engine.getTime().getDeltaTime()*1000000000);
         sh.bind();
         m.draw();
     }

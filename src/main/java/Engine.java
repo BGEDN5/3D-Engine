@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+
 public class Engine implements Runnable {
 
     private Thread loopthread;
@@ -7,6 +9,7 @@ public class Engine implements Runnable {
     private static final int height = 760;
     private timeutility time = new timeutility();
     private static Window frame = new Window(Engine.width, Engine.height, "test frame");
+    private Input input = new Input();
     private Game game;
 
 
@@ -53,10 +56,15 @@ public class Engine implements Runnable {
                 update();
             }
             if (!isRendered) {
-                render();
+                try {
+                    render();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             this.time.setPreviousTime(this.time.getCurrentTime());
         }
+
     }
 
     private void update() {
@@ -65,16 +73,16 @@ public class Engine implements Runnable {
         this.isRendered = false;
     }
 
-    private void render() {
+    private void render() throws InterruptedException {
         frame.render();
         this.game.render();
         System.out.println(1/this.time.getDeltaTime()*1000000000);
-//        System.out.println(this.getInput().getCursorX() + " " + engine.getInput().getCursorY());
     }
 
     private void clean() {
         frame.cleanup();
     }
+
 
     public static void main(String[] args) {
         Engine engine = new Engine(new Demo());
