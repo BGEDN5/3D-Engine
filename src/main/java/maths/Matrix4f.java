@@ -1,3 +1,5 @@
+package maths;
+
 public class Matrix4f {
 
     private static final short MATRIX_LEN = 4;

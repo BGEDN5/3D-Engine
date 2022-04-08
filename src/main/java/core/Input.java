@@ -1,3 +1,5 @@
+package core;
+
 import org.lwjgl.glfw.*;
 
 public class Input{

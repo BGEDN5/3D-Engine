@@ -1,3 +1,7 @@
+package render;
+
+import maths.Vector3f;
+
 public class Vertex {
 
    public static final int SIZE = 3;

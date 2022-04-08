@@ -1,3 +1,5 @@
+package maths;
+
 public class Vector2f {
 
     private float x, y;
