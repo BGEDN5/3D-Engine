@@ -1,6 +1,6 @@
 package utils;
 
-public class timeutility {
+public class TimeUtility {
     final double fps = 60;
     Double previousTime = (double) System.nanoTime();
     Double currentTime =  (double) System.nanoTime();
