@@ -66,6 +66,8 @@ public class Engine implements Runnable {
         this.frame.cleanup();
     }
 
-
+   public timeutility getTime() {
+        return this.time;
+    }
 
 }
