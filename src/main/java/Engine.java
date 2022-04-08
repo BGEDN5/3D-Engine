@@ -54,6 +54,7 @@ public class Engine implements Runnable {
 
     private void update() {
         this.frame.update();
+        this.input.update();
         this.isRendered = false;
     }
 
