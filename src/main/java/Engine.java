@@ -41,14 +41,14 @@ public class Engine implements Runnable {
             this.time.setDeltaTime(this.time.calculateDeltaTime());
             DeltaTime += this.time.calculateDeltaTime();
             Double TempGameRate = this.time.GameRate * 1000000000;
-            this.time.setPreviousTime(this.time.getCurrentTime());
-            while (TempGameRate <= DeltaTime) {
+            while (DeltaTime >= TempGameRate) {
                 DeltaTime -= TempGameRate;
                 update();
             }
             if (!isRendered) {
                 render();
             }
+            this.time.setPreviousTime(this.time.getCurrentTime());
         }
     }
 
