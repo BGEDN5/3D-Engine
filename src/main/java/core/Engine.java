@@ -86,6 +86,9 @@ public class Engine implements Runnable {
         frame.cleanup();
     }
 
+    public boolean isRunning() {
+        return this.running;
+    }
 
     public static void main(String[] args) {
         Engine engine = new Engine(new Demo());
