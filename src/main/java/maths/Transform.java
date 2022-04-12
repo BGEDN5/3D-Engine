@@ -15,12 +15,32 @@ public class Transform {
         this.scale = scale;
     }
 
+    public  Transform(){
+
+    }
+
     public Vector3f getTranslation() {
         return translation;
     }
 
     public void setTranslation(Vector3f otherTranslation) {
         this.translation = otherTranslation;
+    }
+
+    public Vector3f getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(Vector3f otherRotation) {
+        this.rotation = otherRotation;
+    }
+
+    public Vector3f getScale() {
+        return scale;
+    }
+
+    public void setScale(Vector3f otherScale) {
+        this.scale = otherScale;
     }
 
     public void setTranslation(float otherX, float otherY, float otherZ) {
