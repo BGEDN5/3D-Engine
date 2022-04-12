@@ -1,14 +1,13 @@
 package maths;
 
-
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 public class Transform {
 
-    private Vector3f translation = new Vector3f(0,0,0);
-    private Vector3f rotation = new Vector3f(0,0,0);
-    private Vector3f scale = new Vector3f(1,1,1);
+    private Vector3f translation = new Vector3f(0, 0, 0);
+    private Vector3f rotation = new Vector3f(0, 0, 0);
+    private Vector3f scale = new Vector3f(1, 1, 1);
 
     public Transform(Vector3f translation, Vector3f rotation, Vector3f scale) {
         this.translation = translation;
@@ -16,27 +15,28 @@ public class Transform {
         this.scale = scale;
     }
 
-    public Vector3f getTranslation(){
+    public Vector3f getTranslation() {
         return translation;
     }
-    public void setTranslation(Vector3f otherTranslation){
+
+    public void setTranslation(Vector3f otherTranslation) {
         this.translation = otherTranslation;
     }
-    public void setTranslation(float otherX,float otherY,float otherZ){
+
+    public void setTranslation(float otherX, float otherY, float otherZ) {
         translation.setX(otherX);
         translation.setY(otherY);
         translation.setZ(otherZ);
     }
 
     public Matrix4f getTransformation() {
-        Matrix4f translationMatrix = getTranslationMatrix(this.translation);
-        Matrix4f rotationMatrix = getRotationMatrix(this.rotation);
-        Matrix4f scaleMatrix = getScaleMatrix(this.scale);
+        Matrix4f translationMatrix = getTranslationMatrix(this.translation.getX(), this.translation.getY(), this.translation.getZ());
+        Matrix4f rotationMatrix = getRotationMatrix(this.translation.getX(), this.translation.getY(), this.translation.getZ());
+        Matrix4f scaleMatrix = getScaleMatrix(this.scale.getX(), this.scale.getY(), this.scale.getZ());
         rotationMatrix.multiply(scaleMatrix);
         translationMatrix.multiply(rotationMatrix);
         return translationMatrix;
     }
-
 
     public static Matrix4f getTranslationMatrix(float x, float y, float z) {
         return new Matrix4f(
@@ -77,7 +77,6 @@ public class Transform {
                                 , {(float) sin(y), (float) cos(y), 1, 0}
                                 , {0, 0, 0, 1}});
 
-
         ry.multiply(rx);
         rz.multiply(ry);
         return rz;
@@ -94,13 +93,3 @@ public class Transform {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
