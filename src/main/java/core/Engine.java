@@ -3,6 +3,8 @@ package core;
 import demo.Demo;
 import utils.TimeUtility;
 
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
+
 public class Engine implements Runnable {
 
     private Thread loopthread;
@@ -71,24 +73,33 @@ public class Engine implements Runnable {
     }
 
     private void update() {
-        frame.update();
+        this.input.update();
+        this.frame.update();
         this.game.update();
         this.isRendered = false;
     }
 
     private void render() throws InterruptedException {
-        frame.render();
+        this.frame.render();
         this.game.render();
-        System.out.println(1/this.time.getDeltaTime()*1000000000);
     }
 
     private void clean() {
-        frame.cleanup();
+        this.frame.cleanup();
     }
 
+    public boolean isRunning() {
+        return this.running;
+    }
 
-    public static void main(String[] args) {
+    public Input getInput() {
+        return this.input;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
         Engine engine = new Engine(new Demo());
         engine.start();
     }
+
+
 }

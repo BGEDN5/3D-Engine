@@ -1,6 +1,7 @@
 package demo;
 
 import core.Game;
+import core.Input;
 import render.Mesh;
 import render.Shader;
 import render.Vertex;
@@ -39,6 +40,7 @@ public class Demo implements Game {
     @Override
     public void update() {
         System.out.println("update");
+        System.out.println(Input.getCursorX() + " " + Input.getCursorY());
     }
 
     @Override
