@@ -23,30 +23,30 @@ public class Transform {
         return translation;
     }
 
-    public void setTranslation(Vector3f otherTranslation) {
-        this.translation = otherTranslation;
+    public void setTranslation(Vector3f other) {
+        this.translation = other;
     }
 
     public Vector3f getRotation() {
         return rotation;
     }
 
-    public void setRotation(Vector3f otherRotation) {
-        this.rotation = otherRotation;
+    public void setRotation(Vector3f other) {
+        this.rotation = other;
     }
 
     public Vector3f getScale() {
         return scale;
     }
 
-    public void setScale(Vector3f otherScale) {
-        this.scale = otherScale;
+    public void setScale(Vector3f other) {
+        this.scale = other;
     }
 
-    public void setTranslation(float otherX, float otherY, float otherZ) {
-        translation.setX(otherX);
-        translation.setY(otherY);
-        translation.setZ(otherZ);
+    public void setTranslation(float X, float Y, float Z) {
+        translation.setX(X);
+        translation.setY(Y);
+        translation.setZ(Z);
     }
 
     public Matrix4f getTransformation() {
@@ -60,10 +60,9 @@ public class Transform {
 
     public static Matrix4f getTranslationMatrix(float x, float y, float z) {
         return new Matrix4f(
-                new float[][]{
-                        {1, 0, 0, x}
-                        , {0, 1, 0, y}
-                        , {0, 0, 1, z}
+                new float[][]{ {1, 0, 0, 0}
+                        , {0, (float) cos(x), (float) -sin(x), 0}
+                        , {0, (float) sin(x), (float) cos(x), 0}
                         , {0, 0, 0, 1}});
     }
 
@@ -74,7 +73,6 @@ public class Transform {
 
         Matrix4f rz = new Matrix4f(
                 new float[][]{
-
                         {(float) cos(z), (float) -sin(z), 0, 0}
                         , {(float) sin(z), (float) cos(z), 0, 0}
                         , {0, 0, 1, 0}
@@ -91,7 +89,6 @@ public class Transform {
         Matrix4f ry =
                 new Matrix4f(
                         new float[][]{
-
                                 {(float) cos(y), (float) -sin(y), 0, 0}
                                 , {0, 1, 0, 0}
                                 , {(float) sin(y), (float) cos(y), 1, 0}
