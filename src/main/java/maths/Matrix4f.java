@@ -2,7 +2,7 @@ package maths;
 
 public class Matrix4f {
 
-    private static final short MATRIX_LEN = 4;
+    public static final short MATRIX_LEN = 4;
     private float[][] matrix;
 
     public Matrix4f(float [][] matrix){
