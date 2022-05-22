@@ -2,13 +2,11 @@ package render;
 import maths.Matrix4f;
 import maths.Vector3f;
 import org.lwjgl.opengl.GL20;
-import org.lwjgl.system.MemoryUtil;
+import java.util.HashMap;
 
-import java.nio.FloatBuffer;
-import java.util.Map;
 public class Shader{
     private int program;
-    private Map<String, Integer> uniforms;
+    private HashMap<String, Integer> uniforms;
     public void addUniform(String uniform){
         int location = GL20.glGetUniformLocation(this.program, uniform);
         assert(location != 0);
@@ -37,9 +35,7 @@ public class Shader{
     }
 
     public void setUniform(String uniform, Matrix4f value){
-        FloatBuffer matrix = MemoryUtil.memAllocFloat(Matrix4f.MATRIX_LEN * Matrix4f.MATRIX_LEN);
-        matrix.put(value.getElements()).flip();
-        GL20.glUniformMatrix4fv(uniforms.get(uniform), true, matrix);
+        GL20.glUniformMatrix4fv(uniforms.get(uniform), true, Buffer.createFlippedBuffer(value));
     }
 
     public void bind() {

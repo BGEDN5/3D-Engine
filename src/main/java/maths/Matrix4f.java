@@ -4,15 +4,9 @@ public class Matrix4f {
 
     public static final short MATRIX_LEN = 4;
     private float[][] matrix;
-    private float[] elements;
 
     public Matrix4f(float [][] matrix){
         this.matrix = matrix;
-    }
-
-    public Matrix4f(float [][] matrix, float [] elements){
-        this.matrix = matrix;
-        this.elements = elements;
     }
 
     public float[][] getMatrix(){
@@ -20,11 +14,7 @@ public class Matrix4f {
     }
 
     public float getCellValue(int i, int j){
-        return this.elements[j * MATRIX_LEN + i];
-    }
-
-    public float[] getElements() {
-        return elements;
+        return this.matrix[i][j];
     }
 
     public void setMatrix(float[][] matrix){
@@ -32,7 +22,7 @@ public class Matrix4f {
     }
 
     public void setSeparateCell(int i, int j, float entry){
-        this.elements[j * MATRIX_LEN + i] = entry;
+        this.matrix[i][j] = entry;
     }
 
     public static Matrix4f identity(){
