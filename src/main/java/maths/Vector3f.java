@@ -24,13 +24,14 @@ public class Vector3f {
         return other.x * this.x + other.y * this.y + other.z * this.z;
     }
 
-    public void cross(Vector3f other) {
+    public Vector3f cross(Vector3f other) {
         this.x = this.y * other.z - this.z * other.y;
         this.y = this.z * other.x - this.x * other.z;
         this.y = this.x * other.y - this.y * other.x;
+        return this;
     }
 
-    public void normalize() {
+    public Vector3f normalize() {
         float l = this.length();
         if (l == 0) {
             throw new IllegalArgumentException("Argument 'divisor' is 0");
@@ -38,9 +39,10 @@ public class Vector3f {
         this.x = this.x / l;
         this.y = this.y / l;
         this.z = this.z / l;
+        return this;
     }
 
-    public void rotate(float angle) {
+    public Vector3f rotate(float angle) {
         float cos = (float) Math.cos(angle), sin = (float) Math.sin(angle);
         float x1 = (cos * this.x - sin * this.y), y1 = (sin * x + cos * this.y), z1 = this.z;
         x1 = x1 * cos + z1 * sin;
@@ -50,46 +52,57 @@ public class Vector3f {
         this.x = x1;
         this.y = z1;
         this.z = z1;
+        return this;
     }
 
-    public void add(Vector3f other) {
+    public Vector3f add(Vector3f other) {
         this.x = this.x + other.x;
         this.y = this.y + other.y;
         this.z = this.z + other.z;
+        return this;
     }
 
-    public void sub(Vector3f other) {
+    public Vector3f sub(Vector3f other) {
         this.x = this.x - other.x;
         this.y = this.y - other.y;
         this.z = this.z - other.z;
+        return this;
     }
 
-    public void mult(Vector3f other) {
+    public Vector3f mult(Vector3f other) {
         this.x = this.x * other.x;
         this.y = this.y * other.y;
         this.z = this.z * other.z;
+        return this;
     }
 
-    public void div(Vector3f other) {
+    public Vector3f div(Vector3f other) {
         if (other.x != 0 && other.y != 0 && other.z != 0) {
             this.x = this.x / other.x;
             this.y = this.y / other.y;
             this.z = this.z / other.z;
+            return this;
         }
         throw new IllegalArgumentException("Argument 'divisor' is 0");
     }
 
-    public void setX(float x1){
+    public Vector3f setX(float x1){
         this.x = x1;
+        return this;
     }
-    public void setY(float y1){
+    public Vector3f setY(float y1){
         this.y = y1;
+        return this;
     }
-    public void setZ(float z1){this.z = z1;}
-    public void set(float x1, float y1, float z1){
+    public Vector3f setZ(float z1){
+        this.z = z1;
+        return this;
+    }
+    public Vector3f set(float x1, float y1, float z1){
         this.x = x1;
         this.y = y1;
         this.z = z1;
+        return this;
     }
 
     public float getX(){

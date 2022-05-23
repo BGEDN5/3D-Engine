@@ -17,12 +17,14 @@ public class Matrix4f {
         return this.matrix[i][j];
     }
 
-    public void setMatrix(float[][] matrix){
+    public Matrix4f setMatrix(float[][] matrix){
         this.matrix = matrix;
+        return this;
     }
 
-    public void setSeparateCell(int i, int j, float entry){
+    public Matrix4f setSeparateCell(int i, int j, float entry){
         this.matrix[i][j] = entry;
+        return this;
     }
 
     public static Matrix4f identity(){
@@ -36,7 +38,7 @@ public class Matrix4f {
         return new Matrix4f(idMat);
     }
 
-    public void multiply(Matrix4f other){
+    public Matrix4f multiply(Matrix4f other){
 
         float[][] tempMat = new float[MATRIX_LEN][MATRIX_LEN];
 
@@ -49,6 +51,7 @@ public class Matrix4f {
             }
         }
         setMatrix(tempMat);
+        return this;
     }
 
 

@@ -23,30 +23,34 @@ public class Transform {
         return translation;
     }
 
-    public void setTranslation(Vector3f other) {
+    public Transform setTranslation(Vector3f other) {
         this.translation = other;
+        return this;
     }
 
     public Vector3f getRotation() {
         return rotation;
     }
 
-    public void setRotation(Vector3f other) {
+    public Transform setRotation(Vector3f other) {
         this.rotation = other;
+        return this;
     }
 
     public Vector3f getScale() {
         return scale;
     }
 
-    public void setScale(Vector3f other) {
+    public Transform setScale(Vector3f other) {
         this.scale = other;
+        return this;
     }
 
-    public void setTranslation(float X, float Y, float Z) {
+    public Transform setTranslation(float X, float Y, float Z) {
         translation.setX(X);
         translation.setY(Y);
         translation.setZ(Z);
+        return this;
     }
 
     public Matrix4f getTransformation() {
