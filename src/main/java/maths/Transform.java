@@ -64,9 +64,9 @@ public class Transform {
 
     public static Matrix4f getTranslationMatrix(float x, float y, float z) {
         return new Matrix4f(
-                new float[][]{ {1, 0, 0, 0}
-                        , {0, (float) cos(x), (float) -sin(x), 0}
-                        , {0, (float) sin(x), (float) cos(x), 0}
+                new float[][]{ {1, 0, 0, x}
+                        , {0, 1, 0, y}
+                        , {0, 0, 1, z}
                         , {0, 0, 0, 1}});
     }
 
