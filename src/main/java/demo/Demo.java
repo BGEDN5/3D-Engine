@@ -31,7 +31,7 @@ public class Demo implements Game {
         Vertex starterVertex2 = new Vertex(1.1f, 1.1f, 1f);
         Vertex starterVertex3 = new Vertex();
 
-        Matrix4f scaleMatrix = transform.getScaleMatrix(1.5f,1.5f,1);
+        Matrix4f scaleMatrix = transform.getRotationMatrix(0,0,-90);
 
         Vertex newVertex = matrixVectorMult(starterVertex,scaleMatrix);
         Vertex newVertex2 = matrixVectorMult(starterVertex2,scaleMatrix);
@@ -41,6 +41,8 @@ public class Demo implements Game {
         m.addVertices(new Vertex[]{newVertex, newVertex2, newVertex3 });
 
         sh = new Shader();
+
+
 
         try {
             sh.addProgram(Utils.loadResource("src/main/resources/shaders/v1/myVShader.glsl"), GL_VERTEX_SHADER);
