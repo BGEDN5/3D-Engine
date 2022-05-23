@@ -23,56 +23,63 @@ public class Quaternion {
         return length;
     }
 
-    public void normalize() {
+    public Quaternion normalize() {
         a = a / getLength();
         b = b / getLength();
         c = c / getLength();
         d = d / getLength();
         length = -1;
+        return this;
     }
 
-    public void conjugate() {
+    public Quaternion conjugate() {
         b = -b;
         c = -c;
         d = -d;
+        return this;
     }
 
-    public void mult(Quaternion other) {
+    public Quaternion mult(Quaternion other) {
         a = a * other.a - b * other.b - c * other.c - d * other.d;
         b = a * other.b + b * other.a + c * other.d - d * other.c;
         c = a * other.c - b * other.d + c * other.a + d * other.b;
         d = a * other.d + b * other.c - c * other.b + d * other.a;
+        return this;
     }
 
     public float getA() {
         return a;
     }
 
-    public void setA(float a) {
+    public Quaternion setA(float a) {
         this.a = a;
+        return this;
     }
 
     public float getB() {
         return b;
     }
 
-    public void setB(float b) {
+    public Quaternion setB(float b) {
         this.b = b;
+        return this;
     }
 
     public float getC() {
         return c;
     }
 
-    public void setC(float c) {
+    public Quaternion setC(float c) {
         this.c = c;
+        return this;
     }
 
     public float getD() {
         return d;
     }
 
-    public void setD(float d) {
+    public Quaternion setD(float d) {
         this.d = d;
+        return this;
     }
 }
