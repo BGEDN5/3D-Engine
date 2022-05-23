@@ -35,7 +35,7 @@ public class Shader{
     }
 
     public void setUniform(String uniform, Matrix4f value){
-        GL20.glUniformMatrix4fv(uniforms.get(uniform), true, Buffer.createFlippedBuffer(value));
+        GL20.glUniformMatrix4fv(uniforms.get(uniform), true, Mesh.createFlippedBuffer(value));
     }
 
     public void bind() {
