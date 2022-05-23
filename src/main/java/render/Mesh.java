@@ -1,5 +1,6 @@
 package render;
 
+import maths.Matrix4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL20;
 
@@ -45,6 +46,18 @@ public class Mesh {
             buffer.put(vertices[i].get().getY());
             buffer.put(vertices[i].get().getZ());
         }
+
+        buffer.flip();
+
+        return buffer;
+    }
+
+    public static FloatBuffer createFlippedBuffer(Matrix4f value) {
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(4 * 4);
+
+        for(int i = 0; i < 4; i++)
+            for(int j = 0; j < 4; j++)
+                buffer.put(value.getCellValue(i, j));
 
         buffer.flip();
 

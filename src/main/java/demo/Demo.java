@@ -36,7 +36,6 @@ public class Demo implements Game {
     public void input() {
 
     }
-
     @Override
     public void update() {
         System.out.println("update");
