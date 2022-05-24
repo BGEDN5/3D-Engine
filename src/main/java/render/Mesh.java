@@ -6,12 +6,16 @@ import org.lwjgl.opengl.GL20;
 
 import java.nio.FloatBuffer;
 
+
 public class Mesh {
+
     private int vbo; // vertex buffer object
+    private int ibo; // index buffer object
     private int size;
 
     public Mesh() {
         this.vbo = GL20.glGenBuffers();
+        this.ibo = GL20.glGenBuffers();
         this.size = 0;
     }
 
@@ -21,9 +25,13 @@ public class Mesh {
         addVertices(vertices);
     }
 
+
     public void addVertices(Vertex[] vertices) {
         this.size += vertices.length;
         GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, this.vbo);
+        GL20.glBufferData(GL20.GL_ARRAY_BUFFER, createFlippedBuffer(vertices), GL20.GL_STATIC_DRAW);
+
+        GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, this.ibo);
         GL20.glBufferData(GL20.GL_ARRAY_BUFFER, createFlippedBuffer(vertices), GL20.GL_STATIC_DRAW);
     }
 
@@ -33,7 +41,8 @@ public class Mesh {
         GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, vbo);
         GL20.glVertexAttribPointer(0, 3, GL20.GL_FLOAT, false, Vertex.SIZE * 4, 0);
 
-        GL20.glDrawArrays(GL20.GL_TRIANGLES, 0, size);
+        GL20.glBindBuffer(GL20.GL_ELEMENT_ARRAY_BUFFER, ibo);
+        GL20.glDrawElements(GL20.GL_TRIANGLES, this.size, GL20.GL_UNSIGNED_INT, 0);
 
         GL20.glDisableVertexAttribArray(0);
     }
