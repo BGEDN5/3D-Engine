@@ -1,9 +1,6 @@
 package core;
 
-import demo.Demo;
 import utils.TimeUtility;
-
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
 
 public class Engine implements Runnable {
 
@@ -96,10 +93,6 @@ public class Engine implements Runnable {
         return this.input;
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        Engine engine = new Engine(new Demo());
-        engine.start();
-    }
 
 
 }
