@@ -93,6 +93,4 @@ public class Engine implements Runnable {
         return this.input;
     }
 
-
-
 }
