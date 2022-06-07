@@ -13,16 +13,17 @@ public class Transform {
     private static float width;
     private static float height;
     private static float fieldOfView;
+
     public Transform(Vector3f translation, Vector3f rotation, Vector3f scale) {
         this.translation = translation;
         this.rotation = rotation;
         this.scale = scale;
     }
 
-    public  Transform(){
-        this.scale = new Vector3f(1,1,1);
-        this.rotation = new Vector3f(0,0,0);
-        this.translation = new Vector3f(0,0,0);
+    public Transform() {
+        this.scale = new Vector3f(1, 1, 1);
+        this.rotation = new Vector3f(0, 0, 0);
+        this.translation = new Vector3f(0, 0, 0);
         this.zNear = 1;
         this.zFar = 1;
         this.width = 600;
@@ -34,7 +35,7 @@ public class Transform {
         fieldOfView = fieldOfView;
     }
 
-    public static float getFieldOfView(){
+    public static float getFieldOfView() {
         return fieldOfView;
     }
 
@@ -42,7 +43,7 @@ public class Transform {
         zFar = zFar;
     }
 
-    public static float getzFar(){
+    public static float getzFar() {
         return zFar;
     }
 
@@ -50,7 +51,7 @@ public class Transform {
         zNear = zNear;
     }
 
-    public static float getzNear(){
+    public static float getzNear() {
         return zNear;
     }
 
@@ -58,7 +59,7 @@ public class Transform {
         height = height;
     }
 
-    public static float getHeight(){
+    public static float getHeight() {
         return height;
     }
 
@@ -66,7 +67,7 @@ public class Transform {
         width = width;
     }
 
-    public static float getWidth(){
+    public static float getWidth() {
         return width;
     }
 
@@ -97,6 +98,23 @@ public class Transform {
         return this;
     }
 
+    public Matrix4f createProjectionMatrix(float fieldOfView, float widht, float heigh, float zNear, float zFar) {
+        float tanFOV = (float) Math.tan(Math.toRadians(fieldOfView / 2));
+        float aspectRatio = width / height;
+        float zRange = zNear - zFar;
+
+        return new Matrix4f(
+                new float[][]{{1 / (tanFOV * aspectRatio), 0, 0, 0,}
+                        , {0, 1 / tanFOV, 0, 0}
+                        , {0, 0, (-zNear - zFar) / zRange, 2 * zFar * zNear / zRange}
+                        , {0, 0, 1, 0}
+                });
+    }
+
+    public Matrix4f getProjectedTransformation() {
+        return createProjectionMatrix(fieldOfView, width, height, zNear, zFar).multiply(getTransformation());
+    }
+
     public Transform setTranslation(float X, float Y, float Z) {
         translation.setX(X);
         translation.setY(Y);
@@ -115,7 +133,7 @@ public class Transform {
 
     public static Matrix4f getTranslationMatrix(float x, float y, float z) {
         return new Matrix4f(
-                new float[][]{ {1, 0, 0, x}
+                new float[][]{{1, 0, 0, x}
                         , {0, 1, 0, y}
                         , {0, 0, 1, z}
                         , {0, 0, 0, 1}});
