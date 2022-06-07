@@ -5,10 +5,14 @@ import static java.lang.Math.sin;
 
 public class Transform {
 
-    private Vector3f translation = new Vector3f(0, 0, 0);
-    private Vector3f rotation = new Vector3f(0, 0, 0);
-    private Vector3f scale = new Vector3f(1, 1, 1);
-
+    private Vector3f translation;
+    private Vector3f rotation;
+    private Vector3f scale;
+    private static float zNear;
+    private static float zFar;
+    private static float width;
+    private static float height;
+    private static float fieldOfView;
     public Transform(Vector3f translation, Vector3f rotation, Vector3f scale) {
         this.translation = translation;
         this.rotation = rotation;
@@ -16,7 +20,54 @@ public class Transform {
     }
 
     public  Transform(){
+        this.scale = new Vector3f(1,1,1);
+        this.rotation = new Vector3f(0,0,0);
+        this.translation = new Vector3f(0,0,0);
+        this.zNear = 1;
+        this.zFar = 1;
+        this.width = 600;
+        this.height = 600;
+        this.fieldOfView = 90;
+    }
 
+    public static void setFieldOfView(float fieldOfView) {
+        fieldOfView = fieldOfView;
+    }
+
+    public static float getFieldOfView(){
+        return fieldOfView;
+    }
+
+    public static void setzFar(float zFar) {
+        zFar = zFar;
+    }
+
+    public static float getzFar(){
+        return zFar;
+    }
+
+    public static void setzNear(float zNear) {
+        zNear = zNear;
+    }
+
+    public static float getzNear(){
+        return zNear;
+    }
+
+    public static void setHeight(float height) {
+        height = height;
+    }
+
+    public static float getHeight(){
+        return height;
+    }
+
+    public static void setWidth(float width) {
+        width = width;
+    }
+
+    public static float getWidth(){
+        return width;
     }
 
     public Vector3f getTranslation() {
