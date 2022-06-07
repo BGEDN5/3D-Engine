@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ObjMeshLoader implements MeshLoader {
 
@@ -13,7 +14,7 @@ public class ObjMeshLoader implements MeshLoader {
     public Mesh loadMesh(String path) throws IOException {
         List<Integer> indicesList = new ArrayList<>();
         List<Vertex> vertexList = new ArrayList<>();
-        List<String[]> text = Files.lines(Path.of(path)).map(line -> line.split(" ")).toList();
+        List<String[]> text = Files.lines(Path.of(path)).map(line -> line.split(" ")).collect(Collectors.toList());
         for (var t : text) {
             System.out.println(Arrays.toString(t));
         }
