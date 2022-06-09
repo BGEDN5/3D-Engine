@@ -1,5 +1,7 @@
 package maths;
 
+import core.Engine;
+
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -8,11 +10,11 @@ public class Transform {
     private Vector3f translation;
     private Vector3f rotation;
     private Vector3f scale;
-    private static float zNear;
-    private static float zFar;
-    private static float width;
-    private static float height;
-    private static float fieldOfView;
+    private static float zNear = 0.5f;
+    private static float zFar = -0.5f;
+    private static float width = Engine.getWidth();
+    private static float height = Engine.getHeight();
+    private static float fieldOfView = 90;
 
     public Transform(Vector3f translation, Vector3f rotation, Vector3f scale) {
         this.translation = translation;
@@ -24,11 +26,6 @@ public class Transform {
         this.scale = new Vector3f(1, 1, 1);
         this.rotation = new Vector3f(0, 0, 0);
         this.translation = new Vector3f(0, 0, 0);
-        zNear = 0.5f;
-        zFar = -0.5f;
-        width = 600;
-        height = 600;
-        fieldOfView = 90;
     }
 
     public static void setFieldOfView(float other) {
