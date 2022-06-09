@@ -12,8 +12,8 @@ public class Transform {
     private Vector3f scale;
     private static float zNear = 0.5f;
     private static float zFar = -0.5f;
-    private static float width = Engine.getWidth();
-    private static float height = Engine.getHeight();
+    private static float width = 800;
+    private static float height = 800;
     private static float fieldOfView = 90;
 
     public Transform(Vector3f translation, Vector3f rotation, Vector3f scale) {

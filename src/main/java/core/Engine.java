@@ -1,6 +1,7 @@
 package core;
 
 
+import maths.Transform;
 import utils.TimeUtility;
 
 import java.io.IOException;
@@ -10,10 +11,8 @@ public class Engine implements Runnable {
     private Thread loopthread;
     private boolean running = false;
     private boolean isRendered = false;
-    private static final int width = 800;
-    private static final int height = 800;
     private TimeUtility time = new TimeUtility();
-    private static Window frame = new Window(Engine.width, Engine.height, "test frame");
+    private static Window frame = new Window((int) Transform.getWidth(), (int) Transform.getHeight(), "test frame");
     private Input input = new Input();
     private Game game;
 
@@ -99,14 +98,5 @@ public class Engine implements Runnable {
     public Input getInput() {
         return this.input;
     }
-
-    public static int getWidth(){
-        return width;
-    }
-
-    public static int getHeight(){
-        return height;
-    }
-
 
 }
