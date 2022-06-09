@@ -1,8 +1,10 @@
 package core;
 
+import java.io.IOException;
+
 public interface Game {
 
-    void init();
+    void init() throws IOException;
 
     void update();
 

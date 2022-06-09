@@ -1,6 +1,9 @@
 package core;
 
+import demo.Demo;
 import utils.TimeUtility;
+
+import java.io.IOException;
 
 public class Engine implements Runnable {
 
@@ -36,7 +39,11 @@ public class Engine implements Runnable {
     @Override
     public void run() {
         frame.init();
-        game.init();
+        try {
+            game.init();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         this.time.setPreviousTime((double) System.nanoTime());
         float DeltaTime = 0;
         while (this.running) {
@@ -91,6 +98,11 @@ public class Engine implements Runnable {
 
     public Input getInput() {
         return this.input;
+    }
+
+    public static void main(String[] args) {
+        Engine engine = new Engine(new Demo());
+        engine.start();
     }
 
 }
