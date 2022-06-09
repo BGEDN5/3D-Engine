@@ -10,8 +10,8 @@ public class Engine implements Runnable {
     private Thread loopthread;
     private boolean running = false;
     private boolean isRendered = false;
-    private static final int width = 1280;
-    private static final int height = 760;
+    private static final int width = 800;
+    private static final int height = 800;
     private TimeUtility time = new TimeUtility();
     private static Window frame = new Window(Engine.width, Engine.height, "test frame");
     private Input input = new Input();
@@ -100,6 +100,13 @@ public class Engine implements Runnable {
         return this.input;
     }
 
+    public static int getWidth(){
+        return width;
+    }
+
+    public static int getHeight(){
+        return height;
+    }
     public static void main(String[] args) {
         Engine engine = new Engine(new Demo());
         engine.start();
