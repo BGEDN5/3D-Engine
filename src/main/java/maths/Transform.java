@@ -24,47 +24,47 @@ public class Transform {
         this.scale = new Vector3f(1, 1, 1);
         this.rotation = new Vector3f(0, 0, 0);
         this.translation = new Vector3f(0, 0, 0);
-        this.zNear = 0.5f;
-        this.zFar = -0.5f;
-        this.width = 600;
-        this.height = 600;
-        this.fieldOfView = 90;
+        zNear = 0.5f;
+        zFar = -0.5f;
+        width = 600;
+        height = 600;
+        fieldOfView = 90;
     }
 
-    public static void setFieldOfView(float fieldOfView) {
-        fieldOfView = fieldOfView;
+    public static void setFieldOfView(float other) {
+        fieldOfView = other;
     }
 
     public static float getFieldOfView() {
         return fieldOfView;
     }
 
-    public static void setzFar(float zFar) {
-        zFar = zFar;
+    public static void setzFar(float other) {
+        zFar = other;
     }
 
     public static float getzFar() {
         return zFar;
     }
 
-    public static void setzNear(float zNear) {
-        zNear = zNear;
+    public static void setzNear(float other) {
+        zNear = other;
     }
 
     public static float getzNear() {
         return zNear;
     }
 
-    public static void setHeight(float height) {
-        height = height;
+    public static void setHeight(float other) {
+        height = other;
     }
 
     public static float getHeight() {
         return height;
     }
 
-    public static void setWidth(float width) {
-        width = width;
+    public static void setWidth(float other) {
+        width = other;
     }
 
     public static float getWidth() {
