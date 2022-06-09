@@ -1,6 +1,6 @@
 package core;
 
-import demo.Demo;
+
 import utils.TimeUtility;
 
 import java.io.IOException;
@@ -107,9 +107,6 @@ public class Engine implements Runnable {
     public static int getHeight(){
         return height;
     }
-    public static void main(String[] args) {
-        Engine engine = new Engine(new Demo());
-        engine.start();
-    }
+
 
 }
