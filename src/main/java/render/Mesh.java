@@ -9,17 +9,26 @@ import static org.lwjgl.opengl.GL20.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+/**
+ * Mesh class Mesh.java to 3D geometric surface
+ */
 public class Mesh {
     private final int vbo; // vertex buffer object
     private final int ibo; // index buffer object
     private int size;
 
+    /**
+     * Constructor of mesh
+     */
     public Mesh() {
         this.vbo = glGenBuffers();
         this.ibo = glGenBuffers();
         this.size = 0;
     }
 
+    /**
+     * Second constructor of mesh for vertices and indices
+     */
     public Mesh(Vertex[] vertices, int[] indices) {
         this.vbo = glGenBuffers();
         this.ibo = glGenBuffers();
@@ -27,6 +36,11 @@ public class Mesh {
         addVertices(vertices, indices);
     }
 
+    /**
+     * This function adds data from vertices to vertex buffer object and data from indices to index buffer object
+     * @param vertices array of vertex
+     * @param indices array of indices
+     */
     public void addVertices(Vertex[] vertices, int[] indices) {
         this.size += indices.length;
 
@@ -37,6 +51,9 @@ public class Mesh {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, createFlippedBuffer(indices), GL_STATIC_DRAW);
     }
 
+    /**
+     * This method uses gl to draw mesh
+     */
     public void draw() {
         glEnableVertexAttribArray(0);
 
@@ -49,6 +66,11 @@ public class Mesh {
         glDisableVertexAttribArray(0);
     }
 
+    /**
+     * This function returns buffer for vertices
+     * @param vertices value of vertices
+     * @return buffer value of vertices
+     */
     public static FloatBuffer createFlippedBuffer(Vertex[] vertices) {
         FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length * Vertex.SIZE);
 
@@ -63,6 +85,11 @@ public class Mesh {
         return buffer;
     }
 
+    /**
+     * This function return buffer for matrix
+     * @param value value of 4x4 matrix
+     * @return buffer value of matrix
+     */
     public static FloatBuffer createFlippedBuffer(Matrix4f value) {
         FloatBuffer buffer = BufferUtils.createFloatBuffer(4 * 4);
 
@@ -75,6 +102,11 @@ public class Mesh {
         return buffer;
     }
 
+    /**
+     * This function returns buffer for indices
+     * @param indices value of indices
+     * @return buffer value of indices
+     */
     public static IntBuffer createFlippedBuffer(int[] indices) {
         IntBuffer buffer = BufferUtils.createIntBuffer(indices.length);
         buffer.put(indices);
@@ -82,14 +114,26 @@ public class Mesh {
         return buffer;
     }
 
+    /**
+     * Getter for vertex buffer object
+     * @return vertex buffer object
+     */
     public int getVbo() {
         return vbo;
     }
 
+    /**
+     * Getter for index buffer object
+     * @return index buffer object
+     */
     public int getIbo() {
         return ibo;
     }
 
+    /**
+     * Getter for mesh size
+     * @return size of mesh
+     */
     public int getSize() {
         return size;
     }

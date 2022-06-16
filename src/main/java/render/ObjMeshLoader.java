@@ -8,8 +8,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Meshloader implementation to implement loading mesh
+ */
 public class ObjMeshLoader implements MeshLoader {
 
+    /**
+     * This method loads mesh which is read from file(path)
+     * @param path file where data is saved
+     * @return Mesh that is read from file(path)
+     * @throws IOException exception is file could not be opened
+     */
     @Override
     public Mesh loadMesh(String path) throws IOException {
         List<Integer> indicesList = new ArrayList<>();

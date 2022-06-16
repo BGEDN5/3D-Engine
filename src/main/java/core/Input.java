@@ -2,6 +2,9 @@ package core;
 
 import org.lwjgl.glfw.*;
 
+/**
+ * Input class Input.java for operations on keyboard, mouse buttons, cursor positions and mouse scroll coordinates
+ */
 public class Input{
 
     private GLFWKeyCallback keyboard;
@@ -17,6 +20,10 @@ public class Input{
     private static int keyPressed;
     private static int buttonPressed;
 
+    /**
+     * Initialise input for keyboard, mouse buttons, cursor position and mouse scroll coordinates
+     * Is called on every action
+     */
     public Input(){
         keyboard = new GLFWKeyCallback(){
             @Override
@@ -51,32 +58,56 @@ public class Input{
         };
     }
 
+    /**
+     * @param key value of key
+     * @return which is down
+     */
     public static boolean isKeyDown(int key){
         return keys[key];
     }
 
+    /**
+     * @param button value of mouse button
+     * @return which mouse button is down
+     */
     public static boolean isButtonDown(int button){
         return buttons[button];
     }
 
+    /**
+     * @param key value of key
+     * @return which key is pressed
+     */
     public static boolean isKeyPressed(int key){
         boolean check = (keyPressed == key);
         if(check) keyPressed = -1;
         return check;
     }
 
+    /**
+     * @param button value of mouse button
+     * @return which mouse button is pressed
+     */
     public static boolean isButtonPressed(int button){
         boolean check = (buttonPressed == button);
         if(check) buttonPressed = -1;
         return check;
     }
 
+    /**
+     * @param key value of key
+     * @return if given key is up
+     */
     public static boolean isKeyUp(int key){
         boolean check = (key != keyPressed);
         if(check) keyPressed = -1;
         return check;
     }
 
+    /**
+     * @param button value of mouse button
+     * @return if given mouse button is up
+     */
     public static boolean isButtonUp(int button){
         boolean check = (button != keyPressed);
         if(check) keyPressed = -1;
@@ -90,40 +121,67 @@ public class Input{
         mouseScroll.free();
     }
 
+    /**
+     * Updates key, mouse button and cursor position on every call
+     */
     public void update(){
         GLFW.glfwSetKeyCallback(Window.getWindow(), getKeyboardCallback());
         GLFW.glfwSetMouseButtonCallback(Window.getWindow(), getMouseButtonsCallback());
         GLFW.glfwSetCursorPosCallback(Window.getWindow(), getCursorPosCallback());
     }
 
+    /**
+     * @return keyboard values
+     */
     public GLFWKeyCallback getKeyboardCallback() {
         return keyboard;
     }
 
+    /**
+     * @return mouse button values
+     */
     public GLFWMouseButtonCallback getMouseButtonsCallback() {
         return mouseButtons;
     }
 
+    /**
+     * @return cursor position values
+     */
     public GLFWCursorPosCallback getCursorPosCallback() {
         return cursorPos;
     }
 
+    /**
+     * @return mouse scroll coordinate values
+     */
     public GLFWScrollCallback getMouseScrollCallback() {
         return mouseScroll;
     }
 
+    /**
+     * @return x coordinate of cursor position
+     */
     public static double getCursorX() {
         return cursorX;
     }
 
+    /**
+     * @return y coordinate of cursor postion
+     */
     public static double getCursorY() {
         return cursorY;
     }
 
+    /**
+     * @return x coordinate of mouse scroll
+     */
     public static double getScrollX() {
         return scrollX;
     }
 
+    /**
+     * @return y coordinate of mouse scroll
+     */
     public static double getScrollY() {
         return scrollY;
     }

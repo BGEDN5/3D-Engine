@@ -6,6 +6,9 @@ import utils.TimeUtility;
 
 import java.io.IOException;
 
+/**
+ * Main class Engine.java for primary actions
+ */
 public class Engine implements Runnable {
 
     private Thread loopthread;
@@ -21,6 +24,9 @@ public class Engine implements Runnable {
         this.game = game;
     }
 
+    /**
+     * Starts threads for engine
+     */
     public void start() {
         if (this.running != true) {
             this.running = true;
@@ -29,12 +35,20 @@ public class Engine implements Runnable {
         }
     }
 
+    /**
+     * Stops running threads
+     * @return true
+     * @throws InterruptedException if thread is interrupted
+     */
     public boolean stop() throws InterruptedException {
         this.running = false;
         this.loopthread = null;
         return true;
     }
 
+    /**
+     * Initialise engine while running
+     */
     @Override
     public void run() {
         frame.init();
