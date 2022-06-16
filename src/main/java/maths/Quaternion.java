@@ -47,6 +47,14 @@ public class Quaternion {
         return this;
     }
 
+    public Quaternion mult(Vector3f r) {
+        float w_ = -a * r.getX() - b * r.getY() - c * r.getZ();
+        float x_ =  d * r.getX() + b * r.getZ() - c * r.getY();
+        float y_ =  d * r.getY() + c * r.getX() - a * r.getZ();
+        float z_ =  d * r.getZ() + a * r.getY() - b * r.getX();
+        return this;
+    }
+
     public float getA() {
         return a;
     }
