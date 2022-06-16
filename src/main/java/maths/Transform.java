@@ -1,5 +1,6 @@
 package maths;
 
+import core.Camera;
 import core.Engine;
 
 import static java.lang.Math.cos;
@@ -18,6 +19,7 @@ public class Transform {
     private static float width = 800;
     private static float height = 800;
     private static float fieldOfView = 90;
+    private static Camera camera;
 
     /**
      * initializes Translation with translation, rotation, scale set to respective arguments
@@ -176,6 +178,22 @@ public class Transform {
     }
 
     /**
+     * getter for camera
+     * @return camera
+     */
+    public static Camera getCamera() {
+        return camera;
+    }
+
+    /**
+     * sets camera to the argument
+     * @param camera value to be set to camera
+     */
+    public static void setCamera(Camera camera) {
+        Transform.camera = camera;
+    }
+
+    /**
      * generates matrix for adjustment of vertexes relative to width and height of window, fieldOfView and range of visibility
      * @param fieldOfView the entire area that a fixed camera can see
      * @param width width of window
@@ -190,20 +208,31 @@ public class Transform {
         float zRange = zNear - zFar;
 
         return new Matrix4f(
-                new float[][]{{1 / (tanFOV * aspectRatio), 0, 0, 0,}
-                        , {0, 1 / tanFOV, 0, 0}
-                        , {0, 0, (-zNear - zFar) / zRange, 2 * zFar * zNear / zRange}
-                        , {0, 0, 1, 0}
+                new float[][]{{1 / (tanFOV * aspectRatio), 0, 0, 0,},
+                        {0, 1 / tanFOV, 0, 0},
+                        {0, 0, (-zNear - zFar) / zRange, 2 * zFar * zNear / zRange},
+                        {0, 0, 1, 0}
                 });
     }
 
     /**
-     * multyplyes existing transformation matrix to createProjectionMatrix() resulting in existing transformation
-     * adjusted for current fieldView, width , height, zNear, zFar
+     * generates matrix with for forward and up attributes of camera
+     * @param forward forward vector of camera
+     * @param up up vector of camera
      * @return resulting matrix
      */
-    public Matrix4f getProjectedTransformation() {
-        return createProjectionMatrix(fieldOfView, width, height, zNear, zFar).multiply(getTransformation());
+    public Matrix4f createCameraMatrix(Vector3f forward, Vector3f up) {
+        Vector3f f = new Vector3f(forward.getX(), forward.getY(), forward.getZ()).normalize();
+        Vector3f r = new Vector3f(up.getX(), up.getY(), up.getZ()).normalize();
+        r = r.cross(f);
+        Vector3f u = f.cross(r);
+        return new Matrix4f(
+                new float[][]{{r.getX(), r.getY(), r.getZ(), 0},
+                        {u.getX(), u.getY(), u.getZ(), 0},
+                        {f.getX(), f.getY(), f.getZ(), 0},
+                        {0, 0, 0, 1}
+                }
+        );
     }
 
     /**
@@ -231,6 +260,20 @@ public class Transform {
         rotationMatrix.multiply(scaleMatrix);
         translationMatrix.multiply(rotationMatrix);
         return translationMatrix;
+    }
+
+    /**
+     * multiplies existing transformation matrix to createProjectionMatrix() resulting in existing transformation
+     * adjusted for current fieldView, width , height, zNear, zFar
+     * @return resulting matrix
+     */
+    public Matrix4f getProjectedTransformation() {
+        Matrix4f transformationMatrix = getTransformation();
+        Matrix4f projectionMatrix = createProjectionMatrix(fieldOfView, width, height, zNear, zFar);
+        Matrix4f cameraRotation = createCameraMatrix(camera.getForward(), camera.getUp());
+        Matrix4f cameraTranslation = getTranslationMatrix(-camera.getPosition().getX(), -camera.getPosition().getY(), -camera.getPosition().getZ());
+
+        return projectionMatrix.multiply(cameraRotation.multiply(cameraTranslation.multiply(transformationMatrix)));
     }
 
     /**
