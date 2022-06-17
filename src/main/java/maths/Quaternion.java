@@ -55,10 +55,7 @@ public class Quaternion {
      * @return conjugated quaternion
      */
     public Quaternion conjugate() {
-        b = -b;
-        c = -c;
-        d = -d;
-        return this;
+        return new Quaternion(-this.a, -this.b, -this.c, this.d);
     }
 
     /**
@@ -66,12 +63,12 @@ public class Quaternion {
      * @param other quaternion to multiply this quaternion
      * @return this object
      */
-    public Quaternion mult(Quaternion other) {
-        a = a * other.a - b * other.b - c * other.c - d * other.d;
-        b = a * other.b + b * other.a + c * other.d - d * other.c;
-        c = a * other.c - b * other.d + c * other.a + d * other.b;
-        d = a * other.d + b * other.c - c * other.b + d * other.a;
-        return this;
+    public Quaternion mult(Quaternion r) {
+        float d_ = d * r.getD() - a * r.getA() - b * r.getB() - c * r.getC();
+        float a_ = a * r.getD() + d * r.getA() + b * r.getC() - c * r.getB();
+        float b_ = b * r.getD() + d * r.getB() + c * r.getA() - a * r.getC();
+        float c_ = c * r.getD() + d * r.getC() + a * r.getB() - b * r.getA();
+        return new Quaternion(a_, b_, c_, d_);
     }
 
     /**
@@ -80,11 +77,11 @@ public class Quaternion {
      * @return this object
      */
     public Quaternion mult(Vector3f r) {
-        float w_ = -a * r.getX() - b * r.getY() - c * r.getZ();
-        float x_ =  d * r.getX() + b * r.getZ() - c * r.getY();
-        float y_ =  d * r.getY() + c * r.getX() - a * r.getZ();
-        float z_ =  d * r.getZ() + a * r.getY() - b * r.getX();
-        return this;
+        float d_ = -a * r.getX() - b * r.getY() - c * r.getZ();
+        float a_ =  d * r.getX() + b * r.getZ() - c * r.getY();
+        float b_ =  d * r.getY() + c * r.getX() - a * r.getZ();
+        float c_ =  d * r.getZ() + a * r.getY() - b * r.getX();
+        return new Quaternion(a_, b_, c_, d_);
     }
 
     /**
