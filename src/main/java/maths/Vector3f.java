@@ -75,7 +75,7 @@ public class Vector3f {
 
     /**
      * Rotates this vector by angle in degrees.
-     * @param angle angle in witch vector will be rotated
+     * @param angle angle in which vector will be rotated
      * @return this object
      */
     public Vector3f rotate(float angle) {
@@ -91,6 +91,13 @@ public class Vector3f {
         return this;
     }
 
+
+    /**
+     * Rotates this vector by angle in degrees about some axis which is also a vector.
+     * @param angle angle in which vector will be rotated
+     * @param axis axis to rotate this vector about
+     * @return this object
+     */
     public Vector3f rotate(float angle, Vector3f axis) {
         float sinHalfAngle = (float) Math.sin(Math.toRadians(angle / 2));
         float cosHalfAngle = (float) Math.cos(Math.toRadians(angle / 2));

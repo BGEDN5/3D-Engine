@@ -1,8 +1,6 @@
 package maths;
 
 import core.Camera;
-import core.Engine;
-
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
