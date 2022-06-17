@@ -1,6 +1,10 @@
 package core;
 
-import org.lwjgl.glfw.*;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWCursorPosCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWMouseButtonCallback;
+import org.lwjgl.glfw.GLFWScrollCallback;
 
 /**
  * Input class Input.java for operations on keyboard, mouse buttons, cursor positions and mouse scroll coordinates
