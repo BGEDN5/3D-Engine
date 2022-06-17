@@ -60,7 +60,7 @@ public class Quaternion {
 
     /**
      * This function multiplies this quaternion by other quaternion
-     * @param other quaternion to multiply this quaternion
+     * @param r quaternion to multiply this quaternion
      * @return this object
      */
     public Quaternion mult(Quaternion r) {
