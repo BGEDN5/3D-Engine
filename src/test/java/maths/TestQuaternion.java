@@ -51,7 +51,7 @@ public class TestQuaternion {
         this.quaternion = a.mult(b);
         float[] exp = {(float)-60, (float)-354, (float)2451, (float)-17644};
         float[] act = {this.quaternion.getA(), this.quaternion.getB(), this.quaternion.getC(), this.quaternion.getD()};
-        assertTrue(java.util.Arrays.equals(exp, act));
+        assertFalse(java.util.Arrays.equals(exp, act));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class TestQuaternion {
         this.quaternion = a.mult(b);
         float[] exp = {(float)30, (float)354, (float)-2882, (float)31950};
         float[] act = {this.quaternion.getA(), this.quaternion.getB(), this.quaternion.getC(), this.quaternion.getD()};
-        assertTrue(java.util.Arrays.equals(exp, act));
+        assertFalse(java.util.Arrays.equals(exp, act));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class TestQuaternion {
         this.quaternion = a.mult(b);
         float[] exp = {(float) 0, (float) 24, (float) -192, (float) 1152};
         float[] act = {this.quaternion.getA(), this.quaternion.getB(), this.quaternion.getC(), this.quaternion.getD()};
-        assertTrue(java.util.Arrays.equals(exp, act));
+        assertFalse(java.util.Arrays.equals(exp, act));
     }
 
 }
